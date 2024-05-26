@@ -38,6 +38,6 @@ form.addEventListener("submit", async (event) => {
 function openPage(url) {
   registerSW()
     .then(() => {
-      location.href = "/uv/service/" + __uv$config.encodeUrl(url);
+      location.href = "/pa/" + __uv$config.encodeUrl(url);
     });
 }
