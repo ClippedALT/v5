@@ -1,20 +1,18 @@
 {
   "name": "PLEXILE ARCADE",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "directories": {
-    "lib": "lib"
+  "description": "The Website With The BEST Games!",
+  "engines": {
+    "npm": ">=9.0.0",
+    "node": ">=18.0.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "jsdom": "^16.7.0",
-    "ws": "^7.5.7"
+    "@titaniumnetwork-dev/ultraviolet": "^2.0.0",
+    "@tomphttp/bare-server-node": "^2.0.2",
+    "express": "^4.19.2"
   }
 }
