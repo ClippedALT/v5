@@ -1,72 +1,64 @@
-const http = require('http');
-const https = require('https');
-const fs = require('fs');
+const { createBareServer } = require("@tomphttp/bare-server-node");
+const express = require("express");
+const { createServer } = require("node:http");
+const { uvPath } = require("@titaniumnetwork-dev/ultraviolet");
+const { hostname } = require("node:os");
+const path = require("path");
 
-const prefix = '/pa';  
-const localAddresses = []; 
-const blockedHostnames = ["https://pornhub.com"]; 
-const ssl = false;  
-const port = 6969; 
-const index_file = 'index.html'; 
+const bare = createBareServer("/bare/");
+const app = express();
 
-const proxy = new (require('./lib/index'))(prefix, {
-  localAddress: localAddresses,
-  blacklist: blockedHostnames
+app.use(express.static(path.join(__dirname, "public")));
+app.use("/uv/", express.static(uvPath));
+
+app.get('*', function (req, res) {
+  res.status(404).sendFile(path.join(__dirname, "public", "404.html"));
 });
 
-const atob = str => Buffer.from(str, 'base64').toString('utf-8');
+const server = createServer();
 
-const app = (req, res) => {
-  if (req.url.startsWith(prefix)) {
-    proxy.http(req, res);
-    return;
+server.on("request", (req, res) => {
+  if (bare.shouldRoute(req)) {
+    bare.routeRequest(req, res);
+  } else {
+    app(req, res);
   }
+});
 
-  req.pathname = req.url.split('#')[0].split('?')[0];
-  req.query = {};
-  req.url
-    .split('#')[0]
-    .split('?')
-    .slice(1)
-    .join('?')
-    .split('&')
-    .forEach(query => (req.query[query.split('=')[0]] = query.split('=').slice(1).join('=')));
-
-  if (req.query.url && (req.pathname == '/prox' || req.pathname == '/prox/' || req.pathname == '/session' || req.pathname == '/session/')) {
-    var url = atob(req.query.url);
-
-    if (url.startsWith('https://') || url.startsWith('http://')) url = url;
-    else if (url.startsWith('//')) url = 'http:' + url;
-    else url = 'http://' + url;
-
-    res.writeHead(301, { location: prefix + proxy.proxifyRequestURL(url) });
-    res.end('');
-    return;
+server.on("upgrade", (req, socket, head) => {
+  if (bare.shouldRoute(req)) {
+    bare.routeUpgrade(req, socket, head);
+  } else {
+    socket.end();
   }
+});
 
-  const publicPath = __dirname + '/public' + req.pathname;
+let port = parseInt(process.env.PORT || "");
 
-  const error = () => {
-    res.statusCode = 404;
-    res.end(fs.readFileSync(__dirname + '/lib/error.html', 'utf-8').replace('%ERR%', `Cannot ${req.method} ${req.pathname}`));
-  };
+if (isNaN(port)) port = 8080;
 
-  fs.lstat(publicPath, (err, stats) => {
-    if (err) return error();
+server.on("listening", () => {
+  const address = server.address();
 
-    if (stats.isDirectory()) {
-      fs.existsSync(publicPath + index_file) ? fs.createReadStream(publicPath + index_file).pipe(res) : error();
-    } else if (stats.isFile()) {
-      !publicPath.endsWith('/') ? fs.createReadStream(publicPath).pipe(res) : error();
-    } else {
-      error();
-    }
+  console.log("Listening on:");
+  console.log(`\thttp://localhost:${address.port}`);
+  console.log(`\thttp://${hostname()}:${address.port}`);
+  console.log(
+    `\thttp://${address.family === "IPv6" ? `[${address.address}]` : address.address}:${address.port}`
+  );
+});
+
+process.on("SIGINT", shutdown);
+process.on("SIGTERM", shutdown);
+
+function shutdown() {
+  console.log("SIGTERM signal received: closing HTTP server");
+  server.close(() => {
+    bare.close();
+    process.exit(0);
   });
-};
+}
 
-const server = ssl
-  ? https.createServer({ key: fs.readFileSync('./ssl/default.key'), cert: fs.readFileSync('./ssl/default.crt') }, app)
-  : http.createServer(app);
-
-proxy.ws(server);
-server.listen(process.env.PORT || port, () => console.log(`${ssl ? 'https://' : 'http://'}0.0.0.0:${port}`));
+server.listen({
+  port,
+});
