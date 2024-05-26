@@ -10,7 +10,7 @@ import 'dotenv/config';
 import path from "node:path";
 
 let port = parseInt(process.env.PORT || "");
-if (isNaN(port)) port = 2100;
+if (isNaN(port)) port = 8080;
 
 const bare = createBareServer("/bare/");
 const app = express();
