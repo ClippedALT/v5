@@ -1,149 +1,157 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="description" content="The ultimate place for 200+ unblocked games at school">
-  <meta name="keywords" content="unblocked, games, unblocked games, school, work">
-  <meta property="og:image" content="./assets/favicon.png">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lunarsync</title>
-  <link rel="icon" href="./assets/favicon.png" type="image/xcon" />
-  <link rel="manifest" href="/manifest.json" />
-  <link rel="stylesheet" href="./css/themes.css" />
-  <link rel="stylesheet" href="./css/global.css" />
-  <link rel="stylesheet" href="./css/search.css" />
-  
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y2W1BSNMG9"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
 
-    gtag('config', 'G-Y2W1BSNMG9');
-  </script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-  
-  <script src="./js/navbar.js" defer></script>
-  <script>
-    registerSW()
-  </script>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="./data/css/root.css">
+    <link rel="stylesheet" href="./data/css/style.css">
+    <script type='text/javascript' src='//banddisordergraceless.com/4f/17/ef/4f17ef8a1a00e17292558dbc42958a7e.js'></script>
+    <script type='text/javascript' src='//banddisordergraceless.com/20/6a/6d/206a6d12234510b2108b9be28905e196.js'></script>    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9624515888311250"
+     crossorigin="anonymous"></script><!-- Google tag (gtag.js) -->
+     <script async src="https://www.googletagmanager.com/gtag/js?id=G-71YXG1KMKT"></script>
+     <link href="https://cdn.jsdelivr.net/gh/eliyantosarage/font-awesome-pro@main/fontawesome-pro-6.5.1-web/css/all.min.css" rel="stylesheet">
+     <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+     
+      gtag('config', 'G-71YXG1KMKT');
+    </script>
+    <title>breakium</title>
 </head>
-<body>
-  <nav class="nav">
-    <div class="right">
-      <i class="uil uil-bars navOpenBtn"></i>
-      <a href="/index.html" class="logo">
-        <img src="./assets/favicon.png" class="logo-image">
-        Lunarsync
-      </a>
+
+<body style="background-color:black;">
+  <div id="container">
+    <div id="loading">
+        <img id="loading-image" src="./data/images/loading.gif" alt="Loading..." />
     </div>
-    <div class="left">
-      <ul class="nav-links">
-        <i class="uil uil-times navCloseBtn"></i>
-        <a href="/">
-          <button class="nav-btn" name="nav-btn">
-            <i class="fa-solid fa-home"></i>
-          </button>
-        </a>
-        <a href="/games.html">
-          <button class="nav-btn" name="nav-btn">
-            <i class="fa-solid fa-gamepad"></i>
-          </button>
-        </a>
-        <a href="/search.html">
-          <button class="nav-btn" name="nav-btn">
-            <i class="fa-solid fa-magnifying-glass"></i>
-          </button>
-        </a>
-        <a href="/extras.html">
-          <button class="nav-btn" name="nav-btn">
-            <i class="fa-solid fa-circle-plus"></i>
-          </button>
-        </a>
-        <a href="/settings.html">
-          <button class="nav-btn" name="nav-btn">
-            <i class="fa-solid fa-gear"></i>
-          </button>
-        </a>
-        <a href="/profile.html">
-          <button class="nav-btn" name="nav-btn">
-            <i class="fa-solid fa-user"></i>
-          </button>
-        </a>
-      </ul>
-    </div>
-  </nav>
-  <div class="main-content">
-    <h1 id="time-text"></h1>
-    <form id="uv-form">
-      <i id="addressIcon" class="search-icon fas fa-magnifying-glass"></i>
-      <input id="uv-search-engine" value="https://www.google.com/search?q=%s" type="hidden" />
-      <input id="uv-address" type="text" placeholder="Search Google or type a URL" />
-    </form>
-    <div>
-      <p id="uv-error"></p>
-      <pre id="uv-error-code"></pre>
-    </div>
-    <div class="shortcuts">
-      <button onclick="openPage('https://google.com/')" class="shortcut" title="shortcut">
-        <img src="./assets/images/google.ico" alt="" class="shortcut-image">
-        <p>Google</p>
-      </button>
-      <button onclick="openPage('https://youtube.com/')" class="shortcut" title="shortcut">
-        <img src="./assets/images/youtube.png" alt="" class="shortcut-image">
-        <p>YouTube</p>
-      </button>
-      <button onclick="openPage('https://twitter.com/')" class="shortcut" title="shortcut">
-        <img src="./assets/images/twitter.png" alt="" class="shortcut-image">
-        <p>Twitter</p>
-      </button>
-      <button onclick="openPage('https://gemini.google.com/')" class="shortcut" title="shortcut">
-        <img src="./assets/images/gemini.png" alt="" class="shortcut-image">
-        <p>Gemini</p>
-      </button>
-      <button onclick="openPage('https://discord.com/')" class="shortcut" title="shortcut">
-        <img src="./assets/images/discord.ico" alt="" class="shortcut-image">
-        <p>Discord</p>
-      </button>
-      <button onclick="openPage('https://play.geforcenow.com/')" class="shortcut" title="shortcut">
-        <img src="./assets/images/geforcenow.webp" alt="" class="shortcut-image">
-        <p>GeForce Now</p>
-      </button>
-      <button onclick="openPage('https://crazygames.com/')" class="shortcut" title="shortcut">
-        <img src="./assets/images/crazygames.avif" alt="" class="shortcut-image">
-        <p>CrazyGames</p>
-      </button>
-      <button onclick="openPage('https://shuttle.lol/')" class="shortcut" title="shortcut">
-        <img src="./assets/images/nowgg.ico" alt="" class="shortcut-image">
-        <p>Now.gg</p>
-      </button>
-      <button onclick="openPage('https://netflix.com/')" class="shortcut" title="shortcut">
-        <img src="./assets/images/netflix.png" alt="" class="shortcut-image">
-        <p>Netflix</p>
-      </button>
-      <button onclick="openPage('https://chess.com/')" class="shortcut" title="shortcut">
-        <img src="./assets/images/chess.png" alt="" class="shortcut-image">
-        <p>Chess.com</p>
-      </button>
-      <button onclick="openPage('https://github.com/')" class="shortcut" title="shortcut">
-        <img src="./assets/images/github.svg" alt="" class="shortcut-image">
-        <p>GitHub</p>
-      </button>
-      <button onclick="handleAddShortcut()" class="shortcut" title="add-shortcut">
-        <i class="fa-solid fa-square-plus" style="font-size: 30px; color: var(--text);"></i>
-        <p>Add Shortcut</p>
-      </button>
-    </div>
+    <div id="darker"></div>
+    <center>
+      <h1 onclick="window.location = '/'">breakium</h1>
+      <div id="mm">
+        <form id="uv-form" class="searchbar-center">
+          <div class="searchbar-input-spacer"></div>
+          <input id="uv-address" type="text" class="searchbar-input" autocomplete="off" title="Search" role="combobox" placeholder="search" />
+        </form>
+      </div>
+      <select id="cloakSelect"></select>
+      <input type="text" id="panickey" maxlength="1"></input>
+      <input type="text" id="panicurl"></input>
+      <div id="marks">
+        <div id="markiplier" onclick="launchnew();" class="dont-delete"><img src="./data/images/plus.png"><p>New +</p></div>
+      </div>
+
+    </center>  
   </div>
-  <script src="/uv/uv.bundle.js" defer></script>
-  <script src="/uv/uv.config.js" defer></script>
-  <script src="/uv/register-sw.js" defer></script>
-  <script src="/uv/search.js" defer></script>
-  <script src="/uv/proxy.js" defer></script>
-  <script src="/js/search.js" defer></script>
+    <script src="uv/uv.bundle.js"></script>
+    <script src="uv/uv.config.js"></script>
+    <script src="uv/uv.sw.js"></script>
+    <script src="./sw.js"></script>
+    <script src="/dynamic/dynamic.config.js"></script>
+    <script src="./data/js/cloak/panic.js"></script>
+    <script>
+      function launchnew() {
+        const b = prompt("What is the URL of it?") || "";
+        const c = prompt("What is the icon?") || "";
+        const d = prompt("What is the title?") || "";
+  
+        const e = document.querySelector("#marks");
+  
+        const f = document.createElement("div");
+        f.setAttribute("id", "mark");
+        f.setAttribute("onclick", `launch('${b}');`);
+        f.setAttribute("data-url", b);
+        f.setAttribute("data-icon", c);
+        f.setAttribute("data-title", d);
+        const g = document.createElement("img");
+        g.setAttribute("src", c);
+        const h = document.createElement("p");
+        h.textContent = d;
+        const deleteButton = document.createElement("button");
+        deleteButton.textContent = "❌";
+        deleteButton.setAttribute("id", "delete-button");
+        deleteButton.addEventListener("click", function() {
+          e.removeChild(f);
+          updateLocalStorage();
+        });
+  
+        f.appendChild(g);
+        f.appendChild(h);
+        f.appendChild(deleteButton);
+        e.appendChild(f);
+        updateLocalStorage();
+      }
+      function updateLocalStorage() {
+        const marks = [];
+        const markElements = document.querySelectorAll("#mark");
+        markElements.forEach(markElement => {
+          const mark = {
+            url: markElement.getAttribute("data-url"),
+            icon: markElement.getAttribute("data-icon"),
+            title: markElement.getAttribute("data-title")
+          };
+          marks.push(mark);
+        });
+        localStorage.setItem("marks", JSON.stringify(marks));
+      }
+  
+      function loadMarks() {
+        const marks = JSON.parse(localStorage.getItem("marks")) || [];
+        const e = document.getElementById("marks");
+
+        marks.forEach(mark => {
+          const f = document.createElement("div");
+          f.setAttribute("id", "mark");
+          f.setAttribute("data-url", mark.url);
+          f.setAttribute("data-icon", mark.icon);
+          f.setAttribute("data-title", mark.title);
+          f.setAttribute("onclick", `launch('${mark.url}');`);
+          const g = document.createElement("img");
+          g.setAttribute("src", mark.icon);
+          const h = document.createElement("p");
+          h.textContent = mark.title;
+          const deleteButton = document.createElement("button");
+          deleteButton.textContent = "❌";
+          deleteButton.setAttribute("id", "delete-button");
+          deleteButton.addEventListener("click", function(event) {
+            event.stopPropagation();
+            if (!f.classList.contains("dont-delete")) {
+              e.removeChild(f);
+              updateLocalStorage();
+            }
+          });
+
+          f.appendChild(g);
+          f.appendChild(h);
+          f.appendChild(deleteButton);
+          e.appendChild(f);
+        });
+      }
+      window.addEventListener("load", loadMarks);
+  
+    </script>
+
+    <script>
+      const worker = new Worker("/dynamic/dynamic.worker.js");
+    </script>
+    
+
+    <script src="./data/js/index.js"></script>
+    <script src="./data/js/loading.js"></script>
+    <script src="./data/js/color.js"></script>
+    <script src="./data/js/custom-friconix.js"></script>
+    <script src="./data/js/siba.js"></script>
+    <script src="./data/js/keypresses.js"></script>
+    <script src="./data/js/nav.js"></script>
+    <script src="./data/js/cloak/cloak.js"></script>
+
+    
+
+    <script defer src="./data/js/friconix.js"> </script>
+    <script src="https://kit.fontawesome.com/671b9764c1.js" crossorigin="anonymous"></script>
 </body>
+
 </html>
