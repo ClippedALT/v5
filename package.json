@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "bare-server-node": "github:tomphttp/bare-server-node",
+    "@tomphttp/bare-server-node": "^1.0.2-beta-readme2",
     "node-static": "^0.7.11"
   },
   "name": "PLEXILE ARCADE",
@@ -12,8 +12,8 @@
     "start": "node index.js"
   },
   "keywords": [
-    "arcade"
+    "proxy"
   ],
-  "author": "PLEXILE Network",
+  "author": "",
   "license": "GPL-3.0-or-later"
 }
