@@ -1,7 +1,7 @@
     "@tomphttp/bare-server-node": "^1.0.2-beta-readme2",
     "bare-server-node": "github:tomphttp/bare-server-node",
     "node-static": "^0.7.11"
-  },
+  }
   "name": "PLEXILE ARCADE",
   "version": "1.0.0",
   "description": "The Website With The BEST Games!",
