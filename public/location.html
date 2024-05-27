@@ -13,9 +13,8 @@
       color: #ffffff;
       font-family: 'Be Vietnam Pro', sans-serif; 
       margin: 0; 
-      padding: 0; 
+      padding: 0;
     }
-
 
     .navbar {
       background-color: #1e1e24;
@@ -263,14 +262,14 @@
     }
 
     .search-container {
-     position: relative;
+      position: relative;
       margin-bottom: 25px;
       width: 500px;
     }
 
     .search-icon {
       position: absolute;
-      left: 420px;
+      left: 5px;
       top: 47%;
       transform: translateY(-50%);
       color: #ABACB3;
@@ -287,11 +286,11 @@
     }
 
     .search-container input {
-      width: 100%;
+      width: 95%;
       padding: 12px 11px 12px 50px;
       border: 1px solid #343436;
+      margin-left: -15px;
       border-radius: 8px;
-      margin-left: 398px;
       font-size: 17px;
       box-shadow: 0 1px 10px #000;
       color: #fff;
@@ -313,11 +312,11 @@
     }
 
     .suggestions {
+      margin-left: -15px;
       position: absolute;
       top: calc(78% - 1px);
-      margin-left: 398px;
       z-index: 2;
-      width: 112.2%;
+      width: 107.1%;
       background-color: #282830;
       border-radius: 0 0 13px 13px;
       opacity: 0;
@@ -327,13 +326,14 @@
     }
 
 
-    .suggestion {
-      padding: 10px;
-      cursor: pointer;
-      color: #fff;
-      font-size: 16px;
-      transition: background-color 0.3s ease;
-    }
+  .suggestion {
+    padding: 10px;
+    cursor: pointer;
+    color: #fff;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    text-align: left; 
+   }
 
     .suggestion:hover {
       background-color: #212129;
@@ -408,6 +408,7 @@
           display: block; 
       }
   </style>
+
   </head>
   <body>
 
@@ -436,32 +437,35 @@
   <input type="text" class="search-bar" placeholder="Search...">
 </div>
 
-     <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-      <center><img src="/images/plexilearcadebanner.png" alt="PLEXILE ARCADE Banner" class="banner"></center>
-    <div class="search-container">
-        <i class="fas fa-search search-icon"></i>
-        <input type="text" id="searchInput" placeholder="Search Google or type a URL" oninput="showSuggestions(this.value)" oninput="checkAndUpdateIcon()" onkeypress="handleKeyPress(event)">
-        <div class="suggestions" id="suggestions"></div>
-    </div>
+     <br><br><br><br><br><br><br><br><br><br><br><br><br>
+      
+      <center><img src="https://cdn.glitch.global/1fb3a947-7899-4966-ab8a-73ab035d3c35/plexilearcadebanner.png?v=1716786226769" alt="PLEXILE ARCADE Banner" class="banner"></center>
 
-   <script>      
-     function setInputValue(value) {
-         document.querySelector('.search-container input').value = value;
+    <center>
+    <form>
+  <div class="search-container">
+    <i class="fas fa-search search-icon"></i>
+    <input type="text" id="searchInput" placeholder="Search Google or type a URL" oninput="showSuggestions(this.value); checkAndUpdateIcon(this.value)">
+    <div class="suggestions" id="suggestions"></div>
+  </div>
+</form>
+    </center>
+    
+    <script>
+      function showSuggestions(value) {
      }
 
-     function checkAndUpdateIcon() {
-         let inputValue = document.querySelector('.search-container input').value.trim();
+    function checkAndUpdateIcon(inputValue) {
+     var urlRegex = /^(https?:\/\/)?([\w.]+)\.([a-z]{2,})(\/\S*)?$/i;
 
-         if (isValidURL(inputValue)) {
-             document.querySelector('.search-icon').classList.remove('fa-search');
-             document.querySelector('.search-icon').classList.add('fa-earth-americas');
-         } else {
-             document.querySelector('.search-icon').classList.remove('fa-earth-americas');
-             document.querySelector('.search-icon').classList.add('fa-search');
-         }
-     }
-
-     document.querySelector('.search-container input').addEventListener('input', checkAndUpdateIcon);
+     if (urlRegex.test(inputValue)) {
+    
+    document.querySelector('.search-icon').className = 'search-icon fas fa-globe-americas';
+     } else {
+    
+    document.querySelector('.search-icon').className = 'search-icon fas fa-search';
+    }
+  }
    </script>
     <script>
            const suggestions = ['apple', 'banana', 'cherry', 'date', 'elderberry', 'fig', 'grape', 'honeydew',
@@ -733,73 +737,47 @@
                    'write', 'What is the KKK?', 'writing', 'wrong', 'yard', 'yeah', 'year', 'yell', 'yellow', 'yes', 'yesterday', 'yet', 'yield', 'you',
                    'young', 'your', 'yours', 'yourself', 'youth', 'zone'];
 
-            function showSuggestions(input) {
-               const suggestionsDiv = document.getElementById('suggestions');
-               suggestionsDiv.innerHTML = '';
+        function showSuggestions(input) {
+    const suggestionsDiv = document.getElementById('suggestions');
+    suggestionsDiv.innerHTML = '';
 
-               const filteredSuggestions = suggestions.filter(suggestion => 
-                   suggestion.toLowerCase().includes(input.toLowerCase())
-               );
+    const filteredSuggestions = suggestions.filter(suggestion =>
+      suggestion.toLowerCase().includes(input.toLowerCase())
+    );
 
-               if (input.length > 0 && filteredSuggestions.length > 0) {
-                   filteredSuggestions.forEach(suggestion => {
-                       const suggestionElement = document.createElement('div');
-                       suggestionElement.classList.add('suggestion');
-                       suggestionElement.textContent = suggestion;
-                       suggestionElement.addEventListener('click', () => {
-                           setInputValue(suggestion);
-                           suggestionsDiv.innerHTML = '';
-                           suggestionsDiv.classList.remove('show');
-                       });
-                       suggestionsDiv.appendChild(suggestionElement);
-                   });
+    if (input.length > 0 && filteredSuggestions.length > 0) {
+      filteredSuggestions.forEach(suggestion => {
+        const suggestionElement = document.createElement('div');
+        suggestionElement.classList.add('suggestion');
+        suggestionElement.textContent = suggestion;
+        suggestionElement.addEventListener('click', () => {
+          setInputValue(suggestion);
+          suggestionsDiv.innerHTML = '';
+          suggestionsDiv.classList.remove('show');
+        });
+        suggestionsDiv.appendChild(suggestionElement);
+      });
 
-                   suggestionsDiv.classList.add('show');
-               } else {
-                   suggestionsDiv.classList.remove('show');
-               }
-           }
+      suggestionsDiv.classList.add('show');
+    } else {
+      suggestionsDiv.classList.remove('show');
+    }
+  }
+
+  function setInputValue(value) {
+    document.getElementById('searchInput').value = value;
+  }
+
+  function checkAndUpdateIcon(inputValue) {
+    const urlRegex = /^(https?:\/\/)?([\w.]+)\.([a-z]{2,})(\/\S*)?$/i;
+
+    if (urlRegex.test(inputValue)) {
+      document.querySelector('.search-icon').className = 'search-icon fas fa-globe-americas';
+    } else {
+      document.querySelector('.search-icon').className = 'search-icon fas fa-search';
+    }
+  }
        </script>
-    <script>
-      function setInputValue(value) {
-          document.getElementById('searchInput').value = value;
-      }
-
-      function searchAndRedirect() {
-          let inputValue = document.getElementById('searchInput').value.trim();
-
-          if (inputValue.includes('.')) {
-              if (!inputValue.startsWith('http://') && !inputValue.startsWith('https://')) {
-                  inputValue = 'http://' + inputValue;
-              }
-
-              const encodedValue = btoa(inputValue);
-              const proxiedURL = "/pa/_" + encodedValue + '_/';
-
-              const currentPage = window.location.pathname.split("/").pop();
-              let redirectURL = currentPage === 'go.html' ? 'go.html' : (currentPage === 'go.hrml' ? 'go.hrml' : 'go.html');
-              redirectURL += "?proxiedURL=" + encodeURIComponent(proxiedURL);
-
-              window.location.href = redirectURL;
-          } else {
-              const searchQuery = encodeURIComponent(inputValue);
-              const searchURL = "/go.html?searchQuery=" + searchQuery;
-              window.location.href = searchURL;
-          }
-      }
-
-      function handleKeyPress(event) {
-          if (event.key === 'Enter') {
-              searchAndRedirect();
-          }
-      }
-
-      function isValidURL(url) {
-          const urlPattern = /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,})([/\w .-]*)*\/?$/i;
-          return urlPattern.test(url);
-      }
-
-    </script> 
     <script>
       const canvas = document.getElementById('ballsCanvas');
       const ctx = canvas.getContext('2d');
@@ -980,6 +958,10 @@
     <script src="/panic.js" defer></script>
     <script src="/mobile.js" defer></script>
     <script src="/themes.js" defer></script>
+    
+    <script src="/uv/uv.bundle.js"></script>
+    <script src="/uv/uv.config.js"></script>
+    <script src="/index.js"></script>
 
     </body>
     </html>
