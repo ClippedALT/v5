@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
 <head>
   <title>PLEXILE ARCADE | Proxy</title>
@@ -7,17 +6,17 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> 
   <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.4.2/css/all.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/main.css">
 <body>
-  <style>
-    body {
-      background-color: #1e1e24;
-      color: #ffffff;
-      font-family: 'Be Vietnam Pro', sans-serif; 
-      margin: 0; 
-      padding: 0; 
-    }
+  
+<style>
+ body {
+  background-color: #1e1e24;
+  color: #ffffff;
+  font-family: 'Be Vietnam Pro', sans-serif; 
+  margin: 0; 
+  padding: 0; 
+   
+ }
     
 #searchFrame {
   position: fixed; 
@@ -99,8 +98,8 @@ header {
 
     input[type="text"] {
       flex-grow: 1; 
-      height: 27px;
-      padding: 1px;
+      height: 31px;
+      margin-bottom: -16px;
       border: 1px solid #343436;
       border-radius: 7px; 
       background-color: #1E1E24; 
@@ -109,29 +108,32 @@ header {
       font-size: 13px;
       transition: width 0.3s ease; 
       text-align: center; 
-      max-width: 1150px; 
+      width: 1156px; 
       background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 0 0 1.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 0 0-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 0 0 5.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" fill="%236C6C6D"/></svg>');
       background-repeat: no-repeat;
       background-position: 10px;
       transition: background-color 0.4s ease;
     }
+      
     input[type="text"]:focus {
       outline: none;
        border-color: #343436;
     }
+      
     input[type="text"]:hover {
-      width: 400px; 
       background-color: #282830;
     }
+      
     iframe {
       position: fixed;
-      top: 47px; 
+      top: 43px; 
       left: 0;
       width: 100%;
       height: calc(110% - 60px);
       border: none;
       z-index: 999; 
     }
+      
   body {
     overflow-x: hidden;
   }
@@ -177,12 +179,11 @@ header {
     .twoclick.show {
         opacity: 1;
         display: block; 
-    }
-  </style>
+    } 
+      
+    </style>
   </head>
-  <body>
-
-  <div id="twoclick-menu" class="twoclick">
+    <div id="twoclick-menu" class="twoclick">
     <div class="twoclick-item" onclick="customAction('Back')"><i class="fas fa-arrow-left"></i> Back</div>
     <div class="twoclick-item" onclick="customAction('Forward')"><i class="fas fa-arrow-right"></i> Forward</div>
     <div class="twoclick-item" onclick="customAction('Reload')"><i class="fas fa-sync-alt"></i> Refresh</div>
@@ -194,8 +195,7 @@ header {
     <div class="twoclick-item" onclick="customAction('View All Settings')"><i class="fas fa-cog"></i> View All Settings</div>
   </div>
     
-  <header>
-     
+  <header> 
     <span class="nav-icons" onclick="history.back()" title="Go Back">
       <i class="fa-solid fa-arrow-left"></i>
     </span>
@@ -206,139 +206,111 @@ header {
       <i class="fa-solid fa-rotate-right"></i>
     </span>
     
-    <input type="text" id="searchInput" placeholder="Search Google or type a URL" onkeypress="handleKeyPress(event)" oninput="checkAndUpdateIcon()">
-    <script>
-        function setInputValue(value) {
-            document.getElementById('searchInput').value = value;
-        }
-
-        function checkAndUpdateIcon() {
-            let inputValue = document.getElementById('searchInput').value.trim();
-
-            if (isValidURL(inputValue)) {
-                console.log("Valid URL");
-            } else {
-                console.log("Not a valid URL");
-            }
-        }
-
-        function searchAndRedirect() {
-            let inputValue = document.getElementById('searchInput').value.trim();
-
-            if (inputValue.includes('.')) {
-                if (!inputValue.startsWith('http://') && !inputValue.startsWith('https://')) {
-                    inputValue = 'http://' + inputValue;
-                }
-
-                const encodedValue = btoa(inputValue);
-                const proxiedURL = "/pa/_" + encodedValue + '_/';
-
-                const currentPage = window.location.pathname.split("/").pop();
-                let redirectURL = currentPage === 'go.html' ? 'go.html' : (currentPage === 'go.hrml' ? 'go.hrml' : 'go.html');
-                redirectURL += "?proxiedURL=" + encodeURIComponent(proxiedURL);
-
-                window.location.href = redirectURL;
-            } else {
-                const searchQuery = encodeURIComponent(inputValue);
-                const searchURL = "/go.html?searchQuery=" + searchQuery;
-                window.location.href = searchURL;
-            }
-        }
-
-        function handleKeyPress(event) {
-            if (event.key === 'Enter') {
-                searchAndRedirect();
-            }
-        }
-
-        function isValidURL(url) {
-            const urlPattern = /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,})([/\w .-]*)*\/?$/i;
-            return urlPattern.test(url);
-        }
-    </script>
-
-    <span class="nav-icons2" >
+    <form id="uv-form">
+    <input id="uv-search-engine" value="https://www.google.com/search?q=%s" type="hidden"/> 
+    <input id="uv-address" type="text" placeholder="Search Google or type a URL" class="form__input"/>
+    </form>
+    <div class="desc left-margin">
+    <p id="uv-error"></p>
+    <pre id="uv-error-code"></pre>
+  </div>
+    
+  <span class="nav-icons2" >
     </span>
     
     <span class="nav-icons2" onclick="window.location.href='/'" title="Go to Home">
       <i class="fa-sharp fa-solid fa-house"></i>
     </span>
-    <span class="nav-icons2" onclick="openSourceCode()" title="View Source Code">
+    <span class="nav-icons2" onclick="erudaToggle()" title="View Source Code">
       <i class="fa-solid fa-code"></i>      
     </span>
     <span class="nav-icons2" onclick="toggleFullscreen()" title="Fullscreen">
       <i class="fas fa-solid fa-expand fullscreen-icon"></i>
     </span>
-    </header>
-
-    <main>
-    <iframe src="/locationloader.html" frameborder="0"></iframe>
-    </main>
-
+    </header> 
+  <body>
+ 
+    <iframe src="" class="iframe" id="iframeId" style="bottom: 0" style="border: 0px #ffffff none" name="Iframe" scrolling="yes" frameborder="0" marginheight="0px" marginwidth="0px" height="100%" width="100%" allowfullscreen></iframe>
+    
+     <button onclick="reload()" class="navbtn navbtn1">
+            <i class="fa-solid fa-rotate-right"></i>
+          </button>
+          <button id="home-page" class="navbtn navbtn2" onclick="reload()">
+            <i class="fa-solid fa-house"></i>
+            
     <script>
-      function openCustomSourceCode() {
-        var customLink = prompt("Enter the custom source code link:", "view-source:");
-        if (customLink !== null && customLink !== "") {
-          window.open(customLink, '_blank');
+      function reload() {
+        document.getElementById('iframeId').src = document.getElementById('iframeId').src
+      }
+      function erudaToggle() {
+        const proccy = document.getElementById('iframeId')
+        if (!proccy) return
+
+        const proccyWindow = proccy.contentWindow
+        const proccyDocument = proccy.contentDocument
+
+        if (!proccyWindow || !proccyDocument) return
+
+        if (proccyWindow.eruda?._isInit) {
+          proccyWindow.eruda.destroy()
+        } else {
+          let script = proccyDocument.createElement('script')
+          script.src = 'https://cdn.jsdelivr.net/npm/eruda'
+          script.onload = function () {
+            if (!proccyWindow) return
+            proccyWindow.eruda.init()
+            proccyWindow.eruda.show()
+          }
+          proccyDocument.head.appendChild(script)
         }
       }
-
-  
-function toggleFullscreen() {
-          let elem = document.querySelector('.go');
-
-          if (!document.fullscreenElement) {
-            elem.requestFullscreen().catch((err) => {
-              alert(`Error attempting to enable fullscreen mode: ${err.message} (${err.name})`);
-            });
-          } else {
-            document.exitFullscreen();
-          }
-        }
-
-    document.addEventListener('keydown', function(event) {
-    if (event.key === 'ArrowLeft') {
-      history.back();
-    }
-    else if (event.key === 'ArrowRight') {
-      history.forward(); 
-    }
-    });
+      const homeButton = document.getElementById('home-page')
+      homeButton.addEventListener('click', function () {
+        window.location.href = '/'
+      })
+      window.onload = function () {
+        let encodedUrl = sessionStorage.getItem('ur')
+        encodedUrl = encodedUrl
+        console.log(encodedUrl)
+        document.querySelector('#iframeid').src = encodedUrl
+        let iframe = document.querySelector('#iframeId')
+        iframe.src = encodedUrl
+      }
     </script>
-  
-  <main>
-    <iframe class="go" id="searchFrame" src="" frameborder="0"></iframe>
-  </main>
-
-  <script>
-    window.onload = function() {
-        const proxiedURL = decodeURIComponent(getQueryVariable('proxiedURL'));
-        const searchQuery = getQueryVariable('searchQuery');
-
-        if (searchQuery) {
-            const searchURL = "/pa/_aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbQ==_/search?q=" + searchQuery;
-            document.getElementById('searchFrame').src = searchURL;
-        } else if (proxiedURL) {
-            document.getElementById('searchFrame').src = proxiedURL;
-        } else {
-        }
-
-        window.history.replaceState({}, document.title, "/go.html");
-    };
-
-    function getQueryVariable(variable) {
-        const query = window.location.search.substring(1);
-        const vars = query.split('&');
-        for (let i = 0; i < vars.length; i++) {
-            const pair = vars[i].split('=');
-            if (decodeURIComponent(pair[0]) === variable) {
-                return decodeURIComponent(pair[1]);
-            }
-        }
-        console.log('Query parameter ' + variable + ' not found');
-        return null;
+<script>
+function goBack() {
+    var iframe = document.getElementById('iframeId');
+    if (iframe.contentWindow.history.length > 0) {
+        iframe.contentWindow.history.back();
     }
-  </script>
+}
+
+function goForward() {
+    var iframe = document.getElementById('iframeId');
+    if (iframe.contentWindow.history.length > 0) {
+        iframe.contentWindow.history.forward();
+    }
+}
+</script>
+      <script>
+    function toggleFullscreen() {
+      let elem = document.querySelector('.iframe');
+
+      if (!document.fullscreenElement) {
+        elem.requestFullscreen().catch((err) => {
+          alert(`Error attempting to enable fullscreen mode: ${err.message} (${err.name})`);
+        });
+      } else {
+        document.exitFullscreen();
+      }
+    }
+    </script>
+
+  <script src="/uv/uv.bundle.js" defer></script>
+  <script src="/uv/uv.config.js" defer></script>
+  <script src="/search.js" defer></script>
+  <script src="/index.js" defer></script>
+            
   <script src="/anticlosing.js" defer></script>
   <script src="/clickoffcloaking.js" defer></script>
   <script src="/ads.js" defer></script>
@@ -346,6 +318,6 @@ function toggleFullscreen() {
   <script src="/panic.js" defer></script>
   <script src="/mobile.js" defer></script>
   <script src="/themes.js" defer></script>
-  
+            
 </body>
 </html>
