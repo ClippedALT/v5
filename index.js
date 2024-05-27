@@ -2,6 +2,8 @@ const createServer = require('@tomphttp/bare-server-node').default;
 const http = require('http');
 const nodeStatic = require('node-static');
 
+console.log(createServer); 
+
 const bare = createServer('/bare/');
 const serve = new nodeStatic.Server('public/');
 
@@ -26,4 +28,3 @@ server.on('upgrade', (req, socket, head) => {
 server.listen({
     port: process.env.PORT || 8080,
 });
-
