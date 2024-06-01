@@ -220,7 +220,7 @@ header {
   <span class="nav-icons2" >
     </span>
     
-    <span class="nav-icons2" onclick="window.location.href='/'" title="Go to Home">
+    <span class="nav-icons2" onclick="window.location.href='/apps.html'" title="Go to Home">
       <i class="fa-sharp fa-solid fa-house"></i>
     </span>
     <span class="nav-icons2" onclick="openInNewTab()" title="Open in New Tab">
@@ -257,7 +257,7 @@ header {
       
       const homeButton = document.getElementById('home-page')
       homeButton.addEventListener('click', function () {
-        window.location.href = '/apps.html'
+        window.location.href = '/'
       })
       window.onload = function () {
         let encodedUrl = sessionStorage.getItem('ur')
