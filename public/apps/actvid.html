@@ -284,17 +284,18 @@ function goForward() {
 }
 </script>
 <script>
-    function toggleFullscreen() {
-      let elem = document.querySelector('.iframe');
-
-      if (!document.fullscreenElement) {
-        elem.requestFullscreen().catch((err) => {
-          alert(`Error attempting to enable fullscreen mode: ${err.message} (${err.name})`);
-        });
-      } else {
-        document.exitFullscreen();
-      }
-    }
+       function toggleFullscreen() {
+                  const iframe = document.querySelector('iframe');
+                  if (iframe.requestFullscreen) {
+                      iframe.requestFullscreen();
+                  } else if (iframe.mozRequestFullScreen) { 
+                      iframe.mozRequestFullScreen();
+                  } else if (iframe.webkitRequestFullscreen) { 
+                      iframe.webkitRequestFullscreen();
+                  } else if (iframe.msRequestFullscreen) { 
+                      iframe.msRequestFullscreen();
+                  }
+              }
     </script>
     <script>
       function openInNewTab() {
@@ -302,7 +303,6 @@ function goForward() {
                   const src = iframe.src;
                   window.open(src, '_blank');
               }
-
     </script>
       
   <script src="/uv/uv.bundle.js" defer></script>
