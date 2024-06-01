@@ -1,20 +1,22 @@
-"use strict";
-const form = document.getElementById("form");
+const form = document.querySelector('form');
+const input = document.querySelector('input');
 
-const address = document.getElementById("input");
+form.addEventListener('submit', async event => {
+    event.preventDefault();
+    window.navigator.serviceWorker.register('./sw.js', {
+        scope: __uv$config.prefix
+    }).then(() => {
+        let url = input.value.trim();
+        if (!isUrl(url)) url = 'https://www.google.com/search?q=' + url;
+        else if (!(url.startsWith('https://') || url.startsWith('http://'))) url = 'http://' + url;
 
-form.addEventListener("submit", async (event) => {
-  event.preventDefault();
 
-  try {
-    await registerSW();
-  } catch (err) {
-    console.log(err);
-    throw err;
-  }
-
-  const url = search(address.value, "https://www.google.com/search?q=%s");
-
-  sessionStorage.setItem("url", __uv$config.prefix + __uv$config.encodeUrl(url))
+            sessionStorage.setItem("url", __uv$config.prefix + __uv$config.encodeUrl(url))
   location.href = "/go.html"
+    });
 });
+
+function isUrl(val = ''){
+    if (/^http(s?):\/\//.test(val) || val.includes('.') && val.substr(0, 1) !== ' ') return true;
+    return false;
+};
