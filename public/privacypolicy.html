@@ -96,7 +96,7 @@
     padding: 6px 5px; 
     cursor: pointer; 
     border-radius: 6px;
-    transition: box-shadow 0.3s ease, color 0.3s ease, border 0.3s ease; 
+    transition: box-shadow 0.3s ease, color 0.3s ease, border 0.3s ease;  
   }
 
   .search-bar {
@@ -157,7 +157,7 @@
  .boxx b {
   margin-top: -10px;
   margin-left: 15px;
-   
+
  }    
   .qna-box {
   width: 600px;
@@ -197,7 +197,7 @@
              0 -1px #130101; 
       }
 
-      
+
   .highlight2 {
   color: #b03232; 
   font-weight: bold; 
@@ -436,7 +436,7 @@
       }
 
 
-        .footer-links2 {
+      .footer-links2 {
           display: flex;
           flex-direction: column;
           align-items: flex-start;
@@ -444,7 +444,7 @@
           padding: 0;
           margin: 0;
           font-size: 15px;
-          margin-left: -875px;
+          margin-left: -860px;
       }
 
       .footer-links2 li {
@@ -473,78 +473,103 @@
         height: 2px;
       }
       
-       canvas {
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          z-index: -1;
+     canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+          }
+
+      body {
+        overflow-x: hidden;
+    }
+
+        .twoclick {
+            display: none;
+            position: absolute;
+            background-color: #282830;
+            color: #fff;
+            border: 2px solid #343436;
+            box-shadow: 0 0 6px #000;
+            border-radius: 5px;
+            z-index: 1000;
+            width: 280px;
+            padding: 12px; 
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out; 
         }
-
-        body {
-          overflow-x: hidden;
+        .twoclick-item {
+            padding: 12px 16px; 
+            cursor: pointer;
+            font-size: 15px; 
+            position: relative;
+        }
+        .twoclick-item:hover::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 2px solid grey; 
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .twoclick-item i {
+            margin-right: 8px;
+        }
+        .twoclick-divider {
+            margin: 8px 0;
+            border-top: 2px solid #343436;
+        }
+        .twoclick.show {
+            opacity: 1;
+            display: block; 
+        }
+      
+        h1 {
+           font-size: 60px;
+         }
+      
+        p {
+      margin-top: -25px;
+      color: #fff;
+      font-size: 18px;
+    }
+      
+      h2 {
+        font-weight: 800;      
+        
       }
+      
+      b {
+        font-weight: 550;
+        
+      }
+      
+      h3 {
+       font-size: 22px;
+       font-weight: 950;
+      }
+    </style>
+    </head>
+    <body>
 
-          .twoclick {
-              display: none;
-              position: absolute;
-              background-color: #282830;
-              color: #fff;
-              border: 2px solid #343436;
-              box-shadow: 0 0 6px #000;
-              border-radius: 5px;
-              z-index: 1000;
-              width: 280px;
-              padding: 12px; 
-              opacity: 0;
-              transition: opacity 0.3s ease-in-out; 
-          }
-          .twoclick-item {
-              padding: 12px 16px; 
-              cursor: pointer;
-              font-size: 15px; 
-              position: relative;
-          }
-          .twoclick-item:hover::after {
-              content: "";
-              position: absolute;
-              top: 0;
-              left: 0;
-              width: 100%;
-              height: 100%;
-              border: 2px solid grey; 
-              border-radius: 5px;
-              box-sizing: border-box;
-          }
-          .twoclick-item i {
-              margin-right: 8px;
-          }
-          .twoclick-divider {
-              margin: 8px 0;
-              border-top: 2px solid #343436;
-          }
-          .twoclick.show {
-              opacity: 1;
-              display: block; 
-          }
-      </style>
-      </head>
-      <body>
+    <canvas id="ballsCanvas"></canvas>
 
-      <canvas id="ballsCanvas"></canvas>
-
-      <div id="twoclick-menu" class="twoclick">
-          <div class="twoclick-item" onclick="customAction('Back')"><i class="fas fa-arrow-left"></i> Back</div>
-          <div class="twoclick-item" onclick="customAction('Forward')"><i class="fas fa-arrow-right"></i> Forward</div>
-          <div class="twoclick-item" onclick="customAction('Reload')"><i class="fas fa-sync-alt"></i> Refresh</div>
-          <div class="twoclick-divider"></div>
-          <div class="twoclick-item" onclick="customAction('View Page Source')"><i class="fas fa-code"></i> View Page Source</div>
-          <div class="twoclick-item" onclick="customAction('Inspect')"><i class="fas fa-search"></i> Inspect</div>
-          <div class="twoclick-divider"></div>
-          <div class="twoclick-item" onclick="customAction('Panic Button')"><i class="fas fa-exclamation-triangle"></i> Panic Button</div>
-          <div class="twoclick-item" onclick="customAction('View All Settings')"><i class="fas fa-cog"></i> View All Settings</div>
-      </div>
+    <div id="twoclick-menu" class="twoclick">
+        <div class="twoclick-item" onclick="customAction('Back')"><i class="fas fa-arrow-left"></i> Back</div>
+        <div class="twoclick-item" onclick="customAction('Forward')"><i class="fas fa-arrow-right"></i> Forward</div>
+        <div class="twoclick-item" onclick="customAction('Reload')"><i class="fas fa-sync-alt"></i> Refresh</div>
+        <div class="twoclick-divider"></div>
+        <div class="twoclick-item" onclick="customAction('View Page Source')"><i class="fas fa-code"></i> View Page Source</div>
+        <div class="twoclick-item" onclick="customAction('Inspect')"><i class="fas fa-search"></i> Inspect</div>
+        <div class="twoclick-divider"></div>
+        <div class="twoclick-item" onclick="customAction('Panic Button')"><i class="fas fa-exclamation-triangle"></i> Panic Button</div>
+        <div class="twoclick-item" onclick="customAction('View All Settings')"><i class="fas fa-cog"></i> View All Settings</div>
+    </div>
 
 <div class="navbar">
     <a href="/">
@@ -555,116 +580,54 @@
     <a href="/location.html" class="navbar-item" id="proxy">Proxy</a>
     <a href="/settings.html" class="settings-icon" id="settings"><i class="fas fa-gear"></i></a>
 <input type="text" id="searchInput" class="search-bar" placeholder="Search..." onkeypress="handleKeyPress(event)" oninput="checkAndUpdateIcon()">
-<script>
-    function setInputValue(value) {
-        document.getElementById('searchInput').value = value;
-    }
 
-    function checkAndUpdateIcon() {
-        let inputValue = document.getElementById('searchInput').value.trim();
-
-        if (isValidURL(inputValue)) {
-            console.log("Valid URL");
-        } else {
-            console.log("Not a valid URL");
-        }
-    }
-
-    function searchAndRedirect() {
-        let inputValue = document.getElementById('searchInput').value.trim();
-
-        if (inputValue.includes('.')) {
-            if (!inputValue.startsWith('http://') && !inputValue.startsWith('https://')) {
-                inputValue = 'http://' + inputValue;
-            }
-
-            const encodedValue = btoa(inputValue);
-            const proxiedURL = "/pa/_" + encodedValue + '_/';
-
-            const currentPage = window.location.pathname.split("/").pop();
-            let redirectURL = currentPage === 'go.html' ? 'go.html' : (currentPage === 'go.hrml' ? 'go.html' : 'go.html'); // Typo corrected
-            redirectURL += "?proxiedURL=" + encodeURIComponent(proxiedURL);
-
-            window.location.href = redirectURL;
-        } else {
-            const searchQuery = encodeURIComponent(inputValue);
-            const searchURL = "/go.html?searchQuery=" + searchQuery;
-            window.location.href = searchURL;
-        }
-    }
-
-    function handleKeyPress(event) {
-        if (event.key === 'Enter') {
-            searchAndRedirect();
-        }
-    }
-
-    function isValidURL(url) {
-        const urlPattern = /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,})([/\w .-]*)*\/?$/i;
-        return urlPattern.test(url);
-    }
-</script>
 </div>
 
-  <br><br><br><br>
-  
+  <br><br><br>
+
    </div>
 </div>
 
- <div class="thecontainer">
-   <div class="boxx">
-     <h2><span class="highlight2">Privacy Policy</span></h2>
-     <br>
-       <b>Last Updated: April 18, 2024</b> 
-     <br>
-     <b>Welcome to <span class="highlight">PLEXILE ARCADE</span>, a part of the <span class="highlight">PLEXILE Network</span>! Your privacy is of utmost importance to us. This Privacy Policy outlines the types of information we collect and how we use, share, and protect it when you visit or use our website.</b>
-      <br>
-     <h2><span class="highlight2">Information We Collect</span></h2>
-    
-     <b>We do not collect any personally identifiable information from our users. When you visit <span class="highlight">PLEXILE ARCADE</span>, our servers may automatically log standard access data, browser type, access times, and referring website addresses. This data is used solely for the purpose of analyzing website performance and improving user experience.</b>
+
+      
+<center><h1 id="textContainer" style="font-weight: 850;">
+  Privacy Policy</h1>
+</center>
+
+       <center><p>Last Updated: June 2, 2024</p></center>
+     <br><br>
+     <center><b>Welcome to PLEXILE ARCADE, a part of the PLEXILE Network! Your privacy is of utmost importance to us. This Privacy Policy outlines the types of <br>information we collect and how we use, share, and protect it when you visit or use our website.</b></center>
       <br><br>
 
-     <h2><span class="highlight2">Website Cookies</span></h2>
-
-      <b><span class="highlight">PLEXILE ARCADE</span> uses cookies to enhance your browsing experience. Cookies are small text files stored on your device that help us recognize repeat visitors and provide personalized content. You can manage or delete cookies at any time through your browser settings.</b>
-       <br><br>
-
-     <h2><span class="highlight2">Third-Party Advertising</span></h2>
-
-     <b>We may display third-party advertisements on <span class="highlight">PLEXILE ARCADE</span> to support our operations. These advertisers may use cookies and other tracking technologies to collect information about your visits to our website and other sites to provide targeted ads. We do not have access to or control over these third-party cookies.</b>
+<center><b>We do not collect any personally identifiable information from our users. When you visit PLEXILE ARCADE, our servers may automatically log standard <br>access data, browser type, access times, and referring website addresses. This data is used solely for the purpose of analyzing website performance and <br>improving user experience.</b></center>
       <br><br>
 
-     <h2><span class="highlight2">External Links</span></h2>
-
-      <b><span class="highlight">PLEXILE ARCADE</span> may contain links to external websites that are not operated by us. We are not responsible for the privacy practices or content of these third-party sites. We encourage you to review the privacy policies of any third-party websites you visit.</b>
+<center><b>PLEXILE ARCADE uses cookies to enhance your browsing experience. Cookies are small text files stored on your device that help us recognize repeat <br>visitors and provide personalized content. You can manage or delete cookies at any time through your browser settings.</b></center>
        <br><br>
 
-     <h2><span class="highlight2">Security</span></h2>
-
-     <b>We implement reasonable security measures to protect against unauthorized access, alteration, disclosure, or destruction of your personal information. However, please note that no method of transmission over the internet or electronic storage is 100% secure, and we cannot guarantee absolute security.</b>
+<center><b>We may display third-party advertisements on PLEXILE ARCADE to support our operations. These advertisers may use cookies and other tracking technologies <br>to collect information about your visits to our website and other sites to provide targeted ads. We do not have access to or control over these third-party cookies.</b></center>
       <br><br>
 
-     <h2><span class="highlight2">Children's Privacy</span></h2>
-
-      <b><span class="highlight">PLEXILE ARCADE</span> is not intended for use by children under the age of 13. We do not knowingly collect personal information from children. If we become aware that a child under 13 has provided us with personal information, we will take steps to delete such information from our records.</b>
-       <br><br>
-
-     <h2><span class="highlight2">Changes to This Privacy Policy</span></h2>
-
-     <b>We may update this Privacy Policy from time to time to reflect changes in our practices or applicable laws. We will notify you of any material changes by posting the updated policy on this page with a revised "Last Updated" date. Your continued use of <span class="highlight">PLEXILE ARCADE</span> after the updated Privacy Policy becomes effective constitutes your acceptance of the revised policy.</b>
+<center><b>PLEXILE ARCADE may contain links to external websites that are not operated by us. We are not responsible <br>for the privacy practices or content of these third-party sites. We encourage you to review the privacy policies of any third-party websites you visit.</b></center>
       <br><br>
 
-     <h2><span class="highlight2">Contact Us</span></h2>
-
-      <b>If you have any questions or concerns about this Privacy Policy or our privacy practices, please contact us at:</b>
-     <br>
-     <b><span class="highlight">plexilearcade.xyz@gmail.com</span></b>
+      <center><b>We implement reasonable security measures to protect against unauthorized access, alteration, disclosure, or destruction<br> of your personal information. However, please note that no method of transmission over the internet or electronic storage is 100% secure, and we cannot guarantee absolute security.</b></center>
        <br><br>
+
+     <center><b>PLEXILE ARCADE is not intended for use by children under the age of 9. We do not knowingly collect personal information from <br>children. If we become aware that a child under 9 has provided us with personal information, we will take steps to delete such information from our records.</b></center>
+      <br><br>
+
+      <center><b>We may update this Privacy Policy from time to time to reflect changes in our practices or applicable laws. We will notify <br>you of any material changes by posting the updated policy on this page with a revised "Last Updated" date. Your continued use of PLEXILE ARCADE after the updated Privacy Policy becomes effective constitutes your acceptance of the revised policy.</b></center>
+       <br><br>
+
+     <center><b>If you have any questions or concerns about this Privacy Policy or our privacy practices, please contact us at:</b></center><br>
+     <center><h3><span class="highlight">plexilenetwork178191@gmail.com</span></h3></center>
+     
    </div>
    </div>
 
 
-  
+
   <br>
   <div class="content">
   </div>
@@ -693,85 +656,85 @@
             </ul>
           </footer>
 
-    <script>
-      const canvas = document.getElementById('ballsCanvas');
-      const ctx = canvas.getContext('2d');
-      let balls = [];
+      <script>
+        const canvas = document.getElementById('ballsCanvas');
+        const ctx = canvas.getContext('2d');
+        let balls = [];
 
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
 
-      function Ball() {
-          this.x = Math.random() * canvas.width;
-          this.y = Math.random() * canvas.height;
-        this.vx = -0.2 + Math.random() * 0.4;
-        this.vy = -0.2 + Math.random() * 0.4;
-          this.size = Math.random() * 3.7 + 3;
-          this.alpha = Math.random() * 0.4 + 0.2;
-          this.colors = [
-              '176, 50, 50',
-              '227, 197, 195'
-          ];
-          this.lightColors = [
-              '216, 155, 153',
-              '237, 217, 215'
-          ];
-          this.color = Math.random() < 0.6 ? this.colors[0] : this.lightColors[Math.floor(Math.random() * this.lightColors.length)];
-      }
+        function Ball() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+          this.vx = -0.2 + Math.random() * 0.4;
+          this.vy = -0.2 + Math.random() * 0.4;
+            this.size = Math.random() * 3.7 + 3;
+            this.alpha = Math.random() * 0.4 + 0.2;
+            this.colors = [
+                '176, 50, 50',
+                '227, 197, 195'
+            ];
+            this.lightColors = [
+                '216, 155, 153',
+                '237, 217, 215'
+            ];
+            this.color = Math.random() < 0.6 ? this.colors[0] : this.lightColors[Math.floor(Math.random() * this.lightColors.length)];
+        }
 
-      Ball.prototype.update = function() {
-          this.x += this.vx;
-          this.y += this.vy;
+        Ball.prototype.update = function() {
+            this.x += this.vx;
+            this.y += this.vy;
 
-          if (this.x < 0 || this.x > canvas.width) {
-              this.vx = -this.vx;
-          }
+            if (this.x < 0 || this.x > canvas.width) {
+                this.vx = -this.vx;
+            }
 
-          if (this.y < 0 || this.y > canvas.height) {
-              this.vy = -this.vy;
-          }
+            if (this.y < 0 || this.y > canvas.height) {
+                this.vy = -this.vy;
+            }
 
-          this.draw();
-      };
+            this.draw();
+        };
 
-      Ball.prototype.draw = function() {
-          ctx.beginPath();
-          ctx.fillStyle = `rgba(${this.color}, ${this.alpha})`;
-          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-          ctx.fill();
-      };
+        Ball.prototype.draw = function() {
+            ctx.beginPath();
+            ctx.fillStyle = `rgba(${this.color}, ${this.alpha})`;
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fill();
+        };
 
-      function createBalls() {
-          for (let i = 0; i < 105; i++) {
-              balls.push(new Ball());
-          }
-      }
+        function createBalls() {
+            for (let i = 0; i < 105; i++) {
+                balls.push(new Ball());
+            }
+        }
 
-      function animate() {
-          ctx.clearRect(0, 0, canvas.width, canvas.height);
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-          balls.forEach((ball) => {
-              ball.update();
-          });
+            balls.forEach((ball) => {
+                ball.update();
+            });
 
-          requestAnimationFrame(animate);
-      }
+            requestAnimationFrame(animate);
+        }
 
-      createBalls();
-      animate();
+        createBalls();
+        animate();
 
-      window.addEventListener('resize', () => {
-          canvas.width = window.innerWidth;
-          canvas.height = window.innerHeight;
-      });
-    </script>
-    <script src="/anticlosing.js" defer></script>
-    <script src="/clickoffcloaking.js" defer></script>
-    <script src="/ads.js" defer></script>
-    <script src="/tabcloak.js" defer></script>
-    <script src="/panic.js" defer></script>
-    <script src="/mobile.js" defer></script>
-    <script src="/themes.js" defer></script>
-    
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+      </script>
+      <script src="/anticlosing.js" defer></script>
+      <script src="/clickoffcloaking.js" defer></script>
+      <script src="/ads.js" defer></script>
+      <script src="/tabcloak.js" defer></script>
+      <script src="/panic.js" defer></script>
+      <script src="/mobile.js" defer></script>
+      <script src="/themes.js" defer></script>
+  
 </body>
 </html>
