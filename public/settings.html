@@ -27,7 +27,7 @@
         position: fixed; 
         top: 0; 
         width: 100%; 
-        z-index: 1000;
+        z-index: 999;
       }
 
 
@@ -263,7 +263,16 @@
       .box:hover {
           transform: translateY(-5px);
       }
-
+      
+        .box2 {
+          width: 550px;
+          height: 220px;
+          background-color: #282830;
+          border: 3px solid #343436;
+          border-radius: 8px;
+          box-shadow: 0 0px 15px #000;
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
       
           ::-webkit-scrollbar {
             width: 6px;
@@ -426,7 +435,7 @@
               padding: 13px 15px;
               border-radius: 5px;
               cursor: pointer;
-              margin-left: 178px;
+              
               box-shadow: 0 0 10px #000;
               transition: transform 0.3s ease, box-shadow 0.3s ease;
           }
@@ -434,51 +443,76 @@
           button:hover {
               box-shadow: 0 0 12px #b03232;
           }
+      
+      
+       button2 {
+              background-color: #282830;
+              color: #fff;
+              border: 2px solid #333;
+              padding: 13px 15px;
+              border-radius: 5px;
+              cursor: pointer;
+              font-size: 13px;
+              margin-left: 175px;
+              box-shadow: 0 0 10px #000;
+              transition: transform 0.3s ease, box-shadow 0.3s ease;
+          }
 
-          .overlay {
+          button2:hover {
+              box-shadow: 0 0 12px #b03232;
+          }
+
+      
+      .overlay {
               position: fixed;
               top: 0;
               left: 0;
               width: 100%;
               height: 100%;
-              background-color: rgba(0, 0, 0, 0.5);
+              background-color: #000;
               z-index: 999;
               display: none;
               opacity: 0;
               transition: opacity 0.3s;
+          
+         
           }
 
-          .search-popup {
-              position: absolute;
-              top: 50%;
-              left: 50%;
-              transform: translate(-50%, -50%) scale(0.5);
-              transform-origin: center center;
-              background-color: #282830;
-              border: 3px solid #343436;
-              box-shadow: 0 0px 15px #000;
-              padding: 40px;
-              height: 150px;
-              border-radius: 8px;
-              box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
-              z-index: 1000;
-              display: none;
-              width: 300px;
-              transition: transform 0.3s, opacity 0.3s;
-          }
+.search-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #282830;
+    border: 3px solid #343436;
+    box-shadow: 0 0px 15px #000;
+    padding: 40px;
+    height: 180px;
+    border-radius: 5px;
+    box-shadow: 0px 1px 10px #000;
+    z-index: 1000;
+    display: none;
+    width: 300px;
+    opacity: 0;
+    transition: opacity 0.3s, transform 0.3s;
+}
 
-          .popup-input {
-              width: 100%;
-              padding: 10px;
-              margin-bottom: 10px;
-              margin-left: -12px;
-              border: 2px solid #343436;
-              box-shadow: 0 0 10px #000;
-              background-color: #545454;
-              color: #fff;
-              border-radius: 5px;
-              outline: none;
-          }
+.popup-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 2px solid #343436;
+    box-shadow: 0 0 10px #000;
+    background-color: #282830;
+    color: #fff;
+    border-radius: 5px;
+    outline: none;
+    transition: color 0.5s ease-in-out, background-color 0.5s ease-in-out;
+}
+
+.popup-input:hover {
+    background-color: #2F2F37; 
+}
 
            .popup-input::placeholder {
               color: #fff;
@@ -489,15 +523,16 @@
               justify-content: space-between;
           }
 
-          .popup-visible {
-              transform: translate(-50%, -50%) scale(1);
-              opacity: 1;
-          }
+      
+      .popup-visible {
+    display: block;
+    opacity: 1;
+}    
+      
 
           .popup-buttons {
               display: flex;
               justify-content: center; 
-              gap: 10px; 
           }
 
           .popup-button {
@@ -509,13 +544,14 @@
               padding: 10px 15px;
               border-radius: 5px;
               cursor: pointer;
+              margin-left: 8px;
               transition: box-shadow 0.3s ease;
               border: 2px solid #333;
           }
 
           .popup-button:hover {
           }
-
+      
           .broken {
             color: #FF000D;
           }  
@@ -523,65 +559,17 @@
         overflow-x: hidden;
     }
 
-        .twoclick {
-            display: none;
-            position: absolute;
-            background-color: #282830;
-            color: #fff;
-            border: 2px solid #343436;
-            box-shadow: 0 0 6px #000;
-            border-radius: 5px;
-            z-index: 1000;
-            width: 280px;
-            padding: 12px; 
-            opacity: 0;
-            transition: opacity 0.3s ease-in-out; 
-        }
-        .twoclick-item {
-            padding: 12px 16px; 
-            cursor: pointer;
-            font-size: 15px; 
-            position: relative;
-        }
-        .twoclick-item:hover::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 2px solid grey; 
-            border-radius: 5px;
-            box-sizing: border-box;
-        }
-        .twoclick-item i {
-            margin-right: 8px;
-        }
-        .twoclick-divider {
-            margin: 8px 0;
-            border-top: 2px solid #343436;
-        }
-        .twoclick.show {
-            opacity: 1;
-            display: block; 
-        }
+      b {
+        font-size: 20px; 
+      }
     </style>
+  <style>
+
+  </style>
     </head>
     <body>
 
     <canvas id="ballsCanvas"></canvas>
-
-    <div id="twoclick-menu" class="twoclick">
-        <div class="twoclick-item" onclick="customAction('Back')"><i class="fas fa-arrow-left"></i> Back</div>
-        <div class="twoclick-item" onclick="customAction('Forward')"><i class="fas fa-arrow-right"></i> Forward</div>
-        <div class="twoclick-item" onclick="customAction('Reload')"><i class="fas fa-sync-alt"></i> Refresh</div>
-        <div class="twoclick-divider"></div>
-        <div class="twoclick-item" onclick="customAction('View Page Source')"><i class="fas fa-code"></i> View Page Source</div>
-        <div class="twoclick-item" onclick="customAction('Inspect')"><i class="fas fa-search"></i> Inspect</div>
-        <div class="twoclick-divider"></div>
-        <div class="twoclick-item" onclick="customAction('Panic Button')"><i class="fas fa-exclamation-triangle"></i> Panic Button</div>
-        <div class="twoclick-item" onclick="customAction('View All Settings')"><i class="fas fa-cog"></i> View All Settings</div>
-    </div>
 
 <div class="navbar">
     <a href="/">
@@ -592,55 +580,7 @@
     <a href="/location.html" class="navbar-item" id="proxy">Proxy</a>
     <a href="/settings.html" class="settings-icon" id="settings"><i class="fas fa-gear"></i></a>
 <input type="text" id="searchInput" class="search-bar" placeholder="Search..." onkeypress="handleKeyPress(event)" oninput="checkAndUpdateIcon()">
-<script>
-    function setInputValue(value) {
-        document.getElementById('searchInput').value = value;
-    }
 
-    function checkAndUpdateIcon() {
-        let inputValue = document.getElementById('searchInput').value.trim();
-
-        if (isValidURL(inputValue)) {
-            console.log("Valid URL");
-        } else {
-            console.log("Not a valid URL");
-        }
-    }
-
-    function searchAndRedirect() {
-        let inputValue = document.getElementById('searchInput').value.trim();
-
-        if (inputValue.includes('.')) {
-            if (!inputValue.startsWith('http://') && !inputValue.startsWith('https://')) {
-                inputValue = 'http://' + inputValue;
-            }
-
-            const encodedValue = btoa(inputValue);
-            const proxiedURL = "/pa/_" + encodedValue + '_/';
-
-            const currentPage = window.location.pathname.split("/").pop();
-            let redirectURL = currentPage === 'go.html' ? 'go.html' : (currentPage === 'go.hrml' ? 'go.html' : 'go.html'); // Typo corrected
-            redirectURL += "?proxiedURL=" + encodeURIComponent(proxiedURL);
-
-            window.location.href = redirectURL;
-        } else {
-            const searchQuery = encodeURIComponent(inputValue);
-            const searchURL = "/go.html?searchQuery=" + searchQuery;
-            window.location.href = searchURL;
-        }
-    }
-
-    function handleKeyPress(event) {
-        if (event.key === 'Enter') {
-            searchAndRedirect();
-        }
-    }
-
-    function isValidURL(url) {
-        const urlPattern = /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,})([/\w .-]*)*\/?$/i;
-        return urlPattern.test(url);
-    }
-</script>
 </div>
 
   <div class="box-container">
@@ -719,32 +659,33 @@
           <span class="slider round"></span>
       </label>
     </div>
-    <div class="box">
+    
+    <div class="box2">
       <br>
-      <center><h2>Panic Key <span class="broken">(Broken)</span></h2></center>
+      <center><h2>Panic Key</span></h2></center>
       <center><p>Redirects you to a educational website whenever a certain key is pressed.</p></center>
 
-    <div class="buttoncontainer">
-      <button onclick="openPopup()">
-          Set Panic Key
-      </button>
-      <span id="panicKeyDisplay">=</span>
-    </div>
+    <center>
+     <div class="buttoncontainer">
+    <button2 onclick="openPopup()">Set Panic Key</button2>
+    <span id="panicKeyDisplay"></span>
+</div>
 
-    <div class="overlay" id="overlay"></div>
+<div class="overlay" id="overlay"></div>
 
-    <div class="search-popup" id="popup">
-      <center><p>Set Panic Key</p></center>
-      <input type="text" id="panicKeyInput" class="popup-input" placeholder="Enter Panic Key" maxlength="1">
+<div class="search-popup" id="popup">
+    <center><b>Set Panic Key</b></center><br>
+    <input type="text" id="panicKeyInput" class="popup-input" placeholder="Enter Panic Key" maxlength="1">
     <br>
-      <div class="popup-buttons">
-          <button onclick="savePanicKey()" class="popup-button">Save</button>
-          <button onclick="closePopup()" class="popup-button">Cancel</button>
-
+    <input type="text" id="urlInput" class="popup-input" placeholder="Enter URL">
+    
+    <div class="popup-buttons">
+        <button onclick="savePanicKey()" class="popup-button">Save</button>
+        <button onclick="closePopup()" class="popup-button">Cancel</button>
         
     </div>
     </div>
-    </div>   
+      </div>
     <div class="box">
 
       <br><br>
