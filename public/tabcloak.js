@@ -10,7 +10,7 @@
     }, 500);
 }
 
-function resetTabb() {
+function resetCloak() {
     const originalTabName = '';
     const originalFavicon = '/plexilearcade.png';
     document.title = originalTabName;
